@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-05-13T09:27:21.922Z</updated>
+  <updated>2020-05-13T12:07:53.947Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux下RAID的用法</title>
+    <link href="http://yoursite.com/2020/05/13/RAID/"/>
+    <id>http://yoursite.com/2020/05/13/RAID/</id>
+    <published>2020-05-13T11:18:56.000Z</published>
+    <updated>2020-05-13T12:07:53.947Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1、RAID（独立冗余磁盘阵列）"><a href="#1、RAID（独立冗余磁盘阵列）" class="headerlink" title="1、RAID（独立冗余磁盘阵列）"></a>1、RAID（独立冗余磁盘阵列）</h2><p>关于RAID的定义和概念在这里就不说了，百度一下一大堆。</p><p>目前的RAID磁盘阵列有十几种方案，今天说的是最常用的四种方案RAID0、RAID1、RAID5、RAID10.</p><h3 id="1-1、RAID0"><a href="#1-1、RAID0" class="headerlink" title="1.1、RAID0"></a>1.1、RAID0</h3><p>RAID0是将硬盘组（最少两块），通过硬件或者软件的方式<strong>串联</strong>在一起组成一个<strong>卷组</strong>，在<strong>理想状态下</strong>能有效的提高硬盘的<strong>吞吐速度</strong>，但是不具备<strong>数据备份和数据恢复</strong>的功能。</p><img src="https://s1.ax1x.com/2020/05/13/YdbA0S.png" alt="YdbA0S.png" border="0" /><h3 id="1-2、RAID1"><a href="#1-2、RAID1" class="headerlink" title="1.2、RAID1"></a>1.2、RAID1</h3><p>RAID 1通过<a href="https://baike.baidu.com/item/磁盘/2842227" target="_blank" rel="noopener">磁盘</a>数据镜像实现<a href="https://baike.baidu.com/item/数据冗余/10168463" target="_blank" rel="noopener">数据冗余</a>，在成对的独立磁盘上产生互 为备份的数据。当原始数据繁忙时，可直接从镜像拷贝中读取数据，因此RAID 1可以提高读取性能。RAID 1是<a href="https://baike.baidu.com/item/磁盘阵列/1149823" target="_blank" rel="noopener">磁盘阵列</a>中单位成本最高的，但提供了很高的数据安全性和可用性。当一个磁盘失效时，系统可以自动切换到镜像磁盘上读写，而不需要重组失效的数据。</p><h4 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h4><p>RAID1通过硬盘数据镜像实现数据的冗余，保护数据安全，在两块盘上产生互为备份的数据，当原始数据繁忙时，可直接从镜像备份中读取数据，因此RAID1可以提供读取性能。</p><p>RAID1是硬盘中单位成本最高的，但提供了很高的数据安全性和可用性，当一个硬盘失效时，系统可以自动切换到镜像硬盘上读/写，并且不需要重组失效的数据。</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://s1.ax1x.com/2020/05/13/YdqpEF.png" alt="YdqpEF.png" title="">                </div>                <div class="image-caption">YdqpEF.png</div>            </figure><h3 id="1-3、RAID5"><a href="#1-3、RAID5" class="headerlink" title="1.3、RAID5"></a>1.3、RAID5</h3><p>RAID 5 是一种存储性能、<a href="https://baike.baidu.com/item/数据安全/3204964" target="_blank" rel="noopener">数据安全</a>和存储成本兼顾的存储解决方案。 RAID 5可以理解为是RAID 0和RAID 1的折中方案。RAID 5可以为系统提供<a href="https://baike.baidu.com/item/数据安全/3204964" target="_blank" rel="noopener">数据安全</a>保障，但保障程度要比Mirror低而磁盘空间利用率要比Mirror高。RAID 5具有和RAID 0相近似的数据读取速度，只是多了一个<a href="https://baike.baidu.com/item/奇偶校验/8090811" target="_blank" rel="noopener">奇偶校验</a>信息，写入数据的速度比对单个<a href="https://baike.baidu.com/item/磁盘/2842227" target="_blank" rel="noopener">磁盘</a>进行写入操作稍慢。同时由于多个数据对应一个<a href="https://baike.baidu.com/item/奇偶校验/8090811" target="_blank" rel="noopener">奇偶校验</a>信息，RAID 5的磁盘空间利用率要比[RAID 1](<a href="https://baike.baidu.com/item/RAID" target="_blank" rel="noopener">https://baike.baidu.com/item/RAID</a> 1)高，存储成本相对较低，是运用较多的一种解决方案</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://s1.ax1x.com/2020/05/13/YdL9qf.png" alt="YdL9qf.png" title="">                </div>                <div class="image-caption">YdL9qf.png</div>            </figure><h3 id="1-4、RAID10"><a href="#1-4、RAID10" class="headerlink" title="1.4、RAID10"></a>1.4、RAID10</h3><p>RAID10就是RAID1+RAID0组合，至少需要四块硬盘。先制成RAID1磁盘阵列，然后在实行RAID0技术。从理论上来讲，最多可以损坏50%的硬盘而不丢失数据，在不考虑成本的条件下，RAID10的性能超过了RAID5</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://s1.ax1x.com/2020/05/13/YdLqO0.png" alt="YdLqO0.png" title="">                </div>                <div class="image-caption">YdLqO0.png</div>            </figure><h2 id="2、部署磁盘阵列"><a href="#2、部署磁盘阵列" class="headerlink" title="2、部署磁盘阵列"></a>2、部署磁盘阵列</h2><blockquote><p>mdadm命令用于管理Linux系统中的软件RAID硬盘阵列，格式为“mdadm [模式]&lt;RAID设备名称&gt; [选项] [成员设备名称]”</p></blockquote><table><thead><tr><th>参数</th><th>作用</th></tr></thead><tbody><tr><td>-a</td><td>检测设备名称</td></tr><tr><td>-n</td><td>指定设备数量</td></tr><tr><td>-l</td><td>制定RAID级别</td></tr><tr><td>-C</td><td>创建</td></tr><tr><td>-v</td><td>显示过程</td></tr><tr><td>-f</td><td>模拟设备损坏</td></tr><tr><td>-r</td><td>移除设备</td></tr><tr><td>-Q</td><td>查看摘要信息</td></tr><tr><td>-D</td><td>查看详细信息</td></tr><tr><td>-S</td><td>停止RAID磁盘阵列</td></tr></tbody></table><h3 id="2-1、命令"><a href="#2-1、命令" class="headerlink" title="2.1、命令"></a>2.1、命令</h3><blockquote><p>创建RAID10</p><p> /dev/md0    为设备名称，</p><p> -n 4    4块硬盘</p><p>-l 10    指定RAID10级别</p></blockquote><ul><li>mdadm -Cv /dev/md0 -a yes -n 4 -l 10 /dev/sdb /dev/sdc /dev/sdd /dev/sde</li></ul><blockquote><p>制作好的RAID磁盘格式化为ext4格式</p></blockquote><ul><li>mkfs.ext4 /dev/md0</li></ul><blockquote><p>创建挂载点，进行挂在操纵，完成后可看见空间</p></blockquote><ul><li><p>mkdir /RAID</p></li><li><p>mount /dev/md0 /RAID</p></li><li><p>df -h</p></li></ul><blockquote><p>查看/dev/md0详细信息</p></blockquote><ul><li>mdadm -D /dev/md0</li></ul><blockquote><p>写入配置文件永久生效</p></blockquote><ul><li>echo “/dev/md0 /RAID ext4 defaults 0 0” &gt;&gt; /etc/fstab</li></ul><h3 id="2-2、损坏模拟"><a href="#2-2、损坏模拟" class="headerlink" title="2.2、损坏模拟"></a>2.2、损坏模拟</h3><blockquote><p>移除 /dev/sdb</p></blockquote><ul><li>mdadm /dev/md0 -f /dev/sdb</li></ul><blockquote><p>重启后重新添加到磁盘阵列</p></blockquote><ul><li>umount /RAID</li></ul><blockquote><p>把新硬盘加入阵列</p></blockquote><ul><li>mdadm /dev/md0 -a /dev/sdb</li></ul><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上是RAID10的创建和损坏替换的过程，有极端情况下会出现全部硬盘损坏，此时就没有任何办法了。</p><p>建议在有一个备份盘，当出事后直接怼上，防止这种极端情况出现，使用的命令如下：</p><blockquote><p>mdadm -Cv /dev/md0 -a yes -n 4 -l 10 -x 1 /dev/sdb /dev/sdc /dev/sdd /dev/sde</p><p>上面命令中的</p><p>-x 1    创建一个备份硬盘</p><p>当其中一个硬盘损坏时，备份硬盘会自动怼上去，在买到新硬盘进行替换，步骤不变，可以试试看哦！</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;1、RAID（独立冗余磁盘阵列）&quot;&gt;&lt;a href=&quot;#1、RAID（独立冗余磁盘阵列）&quot; class=&quot;headerlink&quot; title=&quot;1、RAID（独立冗余磁盘阵列）&quot;&gt;&lt;/a&gt;1、RAID（独立冗余磁盘阵列）&lt;/h2&gt;&lt;p&gt;关于RAID的定义和概念在这
+      
+    
+    </summary>
+    
+    
+    
+      <category term="linux" scheme="http://yoursite.com/tags/java/linux/"/>
+    
+      <category term="RAID" scheme="http://yoursite.com/tags/java/RAID/"/>
+    
+  </entry>
   
   <entry>
     <title>一个Java的响应类</title>
